@@ -3,3 +3,46 @@ CATEGORÍA   --- PRODUCTOS --- 	LINEA COMPRA --- 	COMPRAS --- 	PROVEEDORES
 				 > id_lineacompra
 				 > id_compras
 				 > id_productos
+
+
+PROGRAMACIÓN:
+
+	1.- Día uno:
+
+		< Organización del proyecto en fases:
+
+			* Creación de la base de datos.
+			* Añadir algún dato de muestra.
+			* Iniciar el proyecto JAVA.
+			* Crear las clases.
+			* Crear las vistas.
+			* Crear el resto de componentes JAVA.
+
+		< Tareas:
+
+			* Crear base de datos.
+			* Añadir algun dato de muestra (es menos importante).
+			* Comenzar el proyecto de JAVA.
+			* Pasar las tareas programadas a GIT HUB.
+
+	
+	2.- Día dos:
+
+		< Reorganización del proyecto:
+			
+			* Se analizará brevemente lo realizado el día anterior y se
+			reprogramará la actividad de hoy.
+		
+		< Tareas:
+			* Continuar con las tareas que se han propuesto para el día.
+
+
+	3.- Día tres:
+		<
+
+       	::::::::::::::: DIA DE ENTREGA JAVA ::::::::::::::: 
+
+	4.- Día cuatro:
+		< Revisar el proyecto JAVA e intentar entregarlo.
+
+			
