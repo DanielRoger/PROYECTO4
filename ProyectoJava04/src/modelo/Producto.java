@@ -14,6 +14,7 @@ public class Producto {
     private int prod_id;
     private String prod_nom;
     private double prod_foto;
+    private double prod_preu;
     private int serie_id;
 
     public Producto(int prod_id, String prod_nom, double prod_foto, int serie_id) {
