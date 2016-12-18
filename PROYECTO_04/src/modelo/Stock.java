@@ -10,12 +10,23 @@ package modelo;
  * @author DANIEL Y ROGER
  */
 public class Stock {
-    private int idstock;
+    private int stock_id;
     private int stock_actual;
     private int stock_max;
     private int stock_min;
 
     public Stock() {
+    }
+
+    public Stock(int stock_id) {
+        this.stock_id = stock_id;
+    }
+
+    public Stock(int stock_id, int stock_actual, int stock_max, int stock_min) {
+        this.stock_id = stock_id;
+        this.stock_actual = stock_actual;
+        this.stock_max = stock_max;
+        this.stock_min = stock_min;
     }
 
     public Stock(int stock_actual, int stock_max, int stock_min) {
@@ -24,12 +35,14 @@ public class Stock {
         this.stock_min = stock_min;
     }
 
+   
+
     public int getIdstock() {
-        return idstock;
+        return stock_id;
     }
 
     public void setIdstock(int idstock) {
-        this.idstock = idstock;
+        this.stock_id = idstock;
     }
 
     public int getStock_actual() {
