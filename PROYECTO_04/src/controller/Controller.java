@@ -231,7 +231,7 @@ public class Controller {
         //ACTUALIZAR PRODUCTO:
         String sql2 = "UPDATE tbl_producte SET prod_nom = ?, pro_precio = ?, prod_foto = ?, categoria_id = ? WHERE prod_id = ?";
         //NUEVO STOCK:
-        String sql3 ="INSERT INTO tbl_estocccc (estoc_q_max, estoc_q_actual, estoc_q_min, prod_id) VALUES (?,?,?,?)";
+        String sql3 ="INSERT INTO tbl_estoc (estoc_q_max, estoc_q_actual, estoc_q_min, prod_id) VALUES (?,?,?,?)";
         //ACTUALIZAR STOCK:
         String sql4 ="UPDATE tbl_estoc SET estoc_q_max = ?, estoc_q_actual = ?, estoc_q_min = ?, prod_id = ? WHERE estoc_id = ?";
         //creamos la primera consulta sql
