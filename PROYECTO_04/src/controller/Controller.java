@@ -224,16 +224,18 @@ public class Controller {
         
         
         
+        
+        
         //NUEVO PRODUCTO:
         String sql1 = "INSERT INTO tbl_producte (prod_nom, pro_precio, prod_foto, categoria_id) VALUES (?,?,?,?)";
         //ACTUALIZAR PRODUCTO:
         String sql2 = "UPDATE tbl_producte SET prod_nom = ?, pro_precio = ?, prod_foto = ?, categoria_id = ? WHERE prod_id = ?";
         //NUEVO STOCK:
-        String sql3 ="INSERT INTO tbl_estoc (estoc_q_max, estoc_q_actual, estoc_q_min, prod_id) VALUES (?,?,?,?)";
+        String sql3 ="INSERT INTO tbl_estocccc (estoc_q_max, estoc_q_actual, estoc_q_min, prod_id) VALUES (?,?,?,?)";
         //ACTUALIZAR STOCK:
         String sql4 ="UPDATE tbl_estoc SET estoc_q_max = ?, estoc_q_actual = ?, estoc_q_min = ?, prod_id = ? WHERE estoc_id = ?";
         //creamos la primera consulta sql
-        //String sql1 = "INSERT INTO tbl_producte (pro_nombre, pro_precio ,pro_stock) VALUES (?,?,?)";
+        String sql = "SELECT DISTINCT LAST_INSERT_ID() FROM tbl_producte";
 
         //Creamos la segunda sentencia
         //String sql2 = "INSER INTO tbl_client (cli_nom, cli_nif) VALUES (?,?)";
@@ -242,10 +244,15 @@ public class Controller {
         PreparedStatement pst2 = null;
         PreparedStatement pst3 = null;
         PreparedStatement pst4 = null;
+        
+        Statement st = null;
+        
         try {
             //solo hace una sentencia sql (false) hace dos sentencias (true)
             //cn.setAutoCommit(false);
             if(f!=0){
+                cn.setAutoCommit(false);
+                
                 pst2 = cn.prepareStatement(sql2);
                 
                 pst2.setString(1, p.getProd_nom());
@@ -262,11 +269,17 @@ public class Controller {
                 pst4.setInt(4, p.getProd_id());
                 pst4.setInt(5, s.getIdstock());
                 
-                //pst4.executeUpdate();
-                //pst2.executeUpdate();
+                pst4.executeUpdate();
+                pst2.executeUpdate();
+                
+                cn.commit();
+                cn.setAutoCommit(true);
                 
             
             }else{
+                cn.setAutoCommit(false);
+                
+                st = cn.createStatement();
                 pst1 = cn.prepareStatement(sql1);
                 
                 pst1.setString(1, p.getProd_nom());
@@ -274,39 +287,32 @@ public class Controller {
                 pst1.setInt(3, p.getProd_foto());
                 pst1.setInt(4, p.getCategoria_id());
                 
+                pst1.executeUpdate();
+                
+                ResultSet rs = st.executeQuery(sql);
+                
+                int idPro = 0;
+                
+                while (rs.next()){
+                    
+                    idPro = rs.getInt(1);
+                    
+                }
                 
                 pst3 = cn.prepareStatement(sql3);
                 
                 pst3.setInt(1, s.getStock_max());
                 pst3.setInt(2, s.getStock_actual());
                 pst3.setInt(3, s.getStock_min());
-                pst3.setInt(4, p.getProd_id());
+                pst3.setInt(4, idPro);
                 
-                //pst1.executeUpdate();
-                //pst3.executeUpdate();
+                pst3.executeUpdate();
+                
+                cn.commit();
+                cn.setAutoCommit(true);
                 
             }
-           
-            
-            
-            
-            //pst2 = cn.prepareStatement(sql2);
 
-            //pst2.setString(1, p.getProd_nombre());
-            //pst2.setDouble(2, p.getProd_preu());
-            //pst2.setDouble(3, p.getProd_foto());
-            //pst2.setInt(4, p.getCategoria_id());
-            //pst2.setInt(4, p.getProd_id());
-
-            //pst2 = cn.prepareStatement(sql2);
-
-            //pst2.setString(1, c.getCli_nom());
-            //pst2.setString(2, c.getCli_nif());
-            //System.out.println(sql1);
-            
-            //pst2.executeUpdate();
-            
-            //cn.commit();
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Conexion erronea");

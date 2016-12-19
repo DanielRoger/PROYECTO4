@@ -42,6 +42,8 @@ public class VistaProducto extends javax.swing.JInternalFrame {
         this.jtStock_id.setVisible(false);
         this.jtProd_id.setVisible(false);
         this.JComboBox.setVisible(false);
+        this.jtCategoria_id.setVisible(false);
+        this.jtCategoria_id1.setVisible(false);
         
         this.jtStock.setEditable(false);
         this.jtNombre.setEditable(false);
@@ -51,6 +53,8 @@ public class VistaProducto extends javax.swing.JInternalFrame {
         this.jtStockMin.setEditable(false);
         this.jtCategoria.setEditable(false);
         this.jtFoto.setEditable(false);
+        
+ 
     }
 
     /**
@@ -464,27 +468,28 @@ public class VistaProducto extends javax.swing.JInternalFrame {
         int stock_actual = Integer.parseInt(this.jtStock.getText());
         int stock_max = Integer.parseInt(this.jtStockMax.getText());
         int stock_min = Integer.parseInt(this.jtStockMin.getText());
+        int idCat=Integer.parseInt(this.jtCategoria_id1.getText());
         
         
         
         
         
-        
+        //ACTUALIZAR REGISTRO:
         int f=0;
-        if(this.jtProd_id.getText()!=""){
+        if(this.jtProd_id.getText()=="0"){
             f=1;
             int idPro = Integer.parseInt(this.jtProd_id.getText());
             //int idCat = Integer.parseInt(this.jtCategoria_id1.getText());
             int stock_id = Integer.parseInt(this.jtStock_id.getText());
             
-            Producte p=new Producte(idPro,nombrePro,precioPro,fotoPro);
+            Producte p=new Producte(idPro,nombrePro,precioPro,fotoPro,idCat);
             Stock s=new Stock(stock_id,stock_actual,stock_max,stock_min);
             
             producte.InsertarProductoStock(p, s, f);
             
         }else{
-            //f=0;
-            int idCat = Integer.parseInt(this.jtCategoria_id.getText());
+            //NUEVO REGISTRO:
+            
             Producte p=new Producte(nombrePro,precioPro,fotoPro,idCat);
             Stock s=new Stock(stock_actual,stock_max,stock_min);
             producte.InsertarProductoStock(p, s, f);
@@ -528,7 +533,7 @@ public class VistaProducto extends javax.swing.JInternalFrame {
         this.jtStockMin.setText("");
         this.jtCategoria.setText("");
         this.jtFoto.setText("");
-        this.jtProd_id.setText("");
+        this.jtProd_id.setText("0");
         this.jtStock_id.setText("");
         
         this.JComboBox.setVisible(true);
@@ -570,6 +575,7 @@ public class VistaProducto extends javax.swing.JInternalFrame {
         jtProd_id.setText(String.valueOf(jTable1.getValueAt(fila, 7)));
         jtStock_id.setText(String.valueOf(jTable1.getValueAt(fila, 8)));
         jtCategoria_id.setText(String.valueOf(jTable1.getValueAt(fila, 9)));
+        jtCategoria_id1.setText(String.valueOf(jTable1.getValueAt(fila, 9)));
         
         this.jbGuardar.setEnabled(false);
         this.jbEliminar.setEnabled(true);
@@ -587,6 +593,8 @@ public class VistaProducto extends javax.swing.JInternalFrame {
 
     private void JComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JComboBoxActionPerformed
         // TODO add your handling code here:
+       Categoria ca =(Categoria)this.JComboBox.getSelectedItem();
+       this.jtCategoria_id1.setText(String.valueOf(ca.getCategoria_id()));
     }//GEN-LAST:event_JComboBoxActionPerformed
 
     private void jtCategoria_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtCategoria_idActionPerformed
@@ -619,6 +627,9 @@ public class VistaProducto extends javax.swing.JInternalFrame {
         this.JComboBox.setVisible(true);
         
         this.jbGuardar.setEnabled(true);
+        
+       //Categoria ca =(Categoria)this.JComboBox.getSelectedItem();
+       //this.jtCategoria_id1.setText(String.valueOf(ca.getCategoria_id()));
         
     }//GEN-LAST:event_ModificarActionPerformed
 

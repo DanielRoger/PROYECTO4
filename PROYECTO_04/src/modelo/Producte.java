@@ -21,6 +21,9 @@ public class Producte {
     public Producte() {
     }
 
+    
+    
+    
     public Producte(int prod_id, String prod_nom, int prod_preu, int prod_foto, int categoria_id, int stock) {
         this.prod_id = prod_id;
         this.prod_nom = prod_nom;
