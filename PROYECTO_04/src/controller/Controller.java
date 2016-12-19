@@ -194,6 +194,7 @@ public class Controller {
         
         
          try {
+            cn.setAutoCommit(false);
             //solo hace una sentencia sql (false) hace dos sentencias (true)
             //cn.setAutoCommit(false);
             pst1 = cn.prepareStatement(sql1);
@@ -202,10 +203,11 @@ public class Controller {
             pst2 = cn.prepareStatement(sql2);
             pst2.setInt(1, p.getProd_id());
         
-            //pst1.executeUpdate();
-            //pst2.executeUpdate();
+            pst1.executeUpdate();
+            pst2.executeUpdate();
             
-            
+            cn.commit();
+            cn.setAutoCommit(true);
             
 
         } catch (Exception e) {

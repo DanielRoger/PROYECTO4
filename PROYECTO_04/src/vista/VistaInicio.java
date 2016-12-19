@@ -16,6 +16,7 @@ public class VistaInicio extends javax.swing.JFrame {
      */
     public VistaInicio() {
         initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**
