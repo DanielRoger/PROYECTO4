@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import modelo.Categoria;
 import modelo.Conexion;
 import modelo.Producte;
@@ -324,5 +325,6 @@ public class Controller {
             }
         }
     }
+  
 
 }
