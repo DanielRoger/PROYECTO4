@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-12-2016 a las 15:34:08
+-- Tiempo de generación: 20-12-2016 a las 17:34:24
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 5.5.37
 
@@ -36,7 +36,9 @@ CREATE TABLE `tbl_categoria` (
 --
 
 INSERT INTO `tbl_categoria` (`categoria_id`, `categoria_nom`) VALUES
-(1, 'Dormitorio');
+(1, 'Cocina'),
+(2, 'Dormitorio'),
+(3, 'Salon');
 
 -- --------------------------------------------------------
 
@@ -72,6 +74,7 @@ CREATE TABLE `tbl_detall_com` (
 CREATE TABLE `tbl_estoc` (
   `estoc_id` int(11) NOT NULL,
   `estoc_q_max` int(5) NOT NULL,
+  `estoc_q_actual` int(6) NOT NULL,
   `estoc_q_min` int(5) NOT NULL,
   `prod_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -80,8 +83,10 @@ CREATE TABLE `tbl_estoc` (
 -- Volcado de datos para la tabla `tbl_estoc`
 --
 
-INSERT INTO `tbl_estoc` (`estoc_id`, `estoc_q_max`, `estoc_q_min`, `prod_id`) VALUES
-(1, 200, 50, 1);
+INSERT INTO `tbl_estoc` (`estoc_id`, `estoc_q_max`, `estoc_q_actual`, `estoc_q_min`, `prod_id`) VALUES
+(1, 10, 10, 10, 1),
+(4, 1000, 100, 300, 7),
+(5, 500, 10, 52, 8);
 
 -- --------------------------------------------------------
 
@@ -102,7 +107,9 @@ CREATE TABLE `tbl_producte` (
 --
 
 INSERT INTO `tbl_producte` (`prod_id`, `prod_nom`, `pro_precio`, `prod_foto`, `categoria_id`) VALUES
-(1, 'cama', 100, '1', 1);
+(1, 'Mesa', 100, '1', 2),
+(7, 'silla', 500, '2', 1),
+(8, 'Sillon', 1000, '23', 3);
 
 -- --------------------------------------------------------
 
@@ -197,7 +204,7 @@ ALTER TABLE `tbl_usuario`
 -- AUTO_INCREMENT de la tabla `tbl_categoria`
 --
 ALTER TABLE `tbl_categoria`
-  MODIFY `categoria_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `categoria_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `tbl_comanda`
 --
@@ -212,12 +219,12 @@ ALTER TABLE `tbl_detall_com`
 -- AUTO_INCREMENT de la tabla `tbl_estoc`
 --
 ALTER TABLE `tbl_estoc`
-  MODIFY `estoc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `estoc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `tbl_producte`
 --
 ALTER TABLE `tbl_producte`
-  MODIFY `prod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `prod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `tbl_proveidor`
 --

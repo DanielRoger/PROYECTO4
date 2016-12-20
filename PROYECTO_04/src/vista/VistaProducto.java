@@ -502,7 +502,7 @@ public class VistaProducto extends javax.swing.JInternalFrame {
         this.jtStockMin.setText("");
         this.jtCategoria.setText("");
         this.jtFoto.setText("");
-        this.jtProd_id.setText("0");
+        this.jtProd_id.setText(String.valueOf(0));
         this.jtStock_id.setText("");
 
         this.JComboBox.setVisible(true);
@@ -514,7 +514,6 @@ public class VistaProducto extends javax.swing.JInternalFrame {
         this.jtStock.setEditable(true);
         this.jtStockMax.setEditable(true);
         this.jtStockMin.setEditable(true);
-        this.jtCategoria.setEditable(true);
         this.jtFoto.setEditable(true);
 
         this.jbGuardar.setEnabled(true);
@@ -613,9 +612,9 @@ public class VistaProducto extends javax.swing.JInternalFrame {
 
         //ACTUALIZAR REGISTRO:
         int f=0;
-        if(this.jtProd_id.getText()=="0"){
+        if(Integer.parseInt(this.jtProd_id.getText())!=0){
             f=1;
-            int idPro = Integer.parseInt(this.jtProd_id.getText());
+            int idPro =Integer.parseInt(this.jtProd_id.getText());
             //int idCat = Integer.parseInt(this.jtCategoria_id1.getText());
             int stock_id = Integer.parseInt(this.jtStock_id.getText());
 
@@ -626,7 +625,7 @@ public class VistaProducto extends javax.swing.JInternalFrame {
 
         }else{
             //NUEVO REGISTRO:
-
+            //int idPro =Integer.parseInt(this.jtProd_id.getText());
             Producte p=new Producte(nombrePro,precioPro,fotoPro,idCat);
             Stock s=new Stock(stock_actual,stock_max,stock_min);
             producte.InsertarProductoStock(p, s, f);
